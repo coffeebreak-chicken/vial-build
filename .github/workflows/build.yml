@@ -1,0 +1,57 @@
+# GitHubの「Actions」タブにこの名前が表示される
+name: Build Vial Firmware
+
+# on: workflow_dispatch: 「手動で実行ボタンを押したときだけ動かす」という設定
+# on: workflow_dispatch:  これがないと、ファイルを書き換えるたびに勝手にビルドが始まってしまいます。
+on:
+  workflow_dispatch: # GitHubの画面から手動でビルドを実行できるようにする設定
+
+
+# GitHubが用意してくれる仮想のパソコンのOSにUbuntuを指定
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    # 1. 必要なツール（QMK/Vialのビルドに必要な環境）のセットアップ
+    - name: Checkout qmk_firmware
+      # GitHub Actionsの公式機能を使って、コードをダウンロードする準備をする。
+      uses: actions/checkout@v4
+      # Vial公式が管理しているファームウェアの元データ（リポジトリ）を指定して、丸ごとダウンロードしています。
+      # キーボードのビルドに必要な「外部の細かいプログラム（サブモジュール）」も一緒にすべてダウンロードする
+      with:
+        repository: vial-kb/vial-qmk
+        submodules: recursive
+
+    # 2. ビルド環境（Ubuntu）に必要なパッケージをインストール
+    - name: Install dependencies
+      # 複数行のコマンド（命令）を上から順番に実行する
+      # AVRマイコン（ProMicroなど）やARMマイコン（RP2040など）用のコンパイラをインストール
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y python3-pip gcc-avr binutils-avr avr-libc gcc-arm-none-eabi binutils-arm-none-eabi libnewlib-arm-none-eabi
+
+    # 3. Pythonの依存関係をインストール
+    - name: Install python requirements
+      # QMK/Vialのビルドシステムが内部で使用する便利なライブラリ群を一括でインストール
+      run: |
+        python3 -m pip install -r requirements.txt
+
+    # 4. ファームウェアのビルド
+    # 「keyboard_name」と「keymap_name」は自分のキーボードに合わせて書き換えてください
+    - name: Run build
+      # 指定したキーボードのファームウェアを実際に作成（コンパイル）
+      run: |
+        make keyboard_name:keymap_name
+
+    # 5. ビルドされたファイル（.hexや.binなど）をダウンロードできるように保存
+    - name: Upload Artifact
+    # 出来上がったファイルをGitHubの画面からダウンロードできるように保存（アップロード）する公式機能
+      uses: actions/upload-artifact@v4
+      with:
+        # ダウンロードするときのZipファイルの名前
+        name: vial-firmware
+        path: |
+          *.hex
+          *.bin
+          *.uf2
