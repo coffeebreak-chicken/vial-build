@@ -1,0 +1,6 @@
+
+cd vial-qmk
+sudo service docker start
+
+util/docker_build.sh gh60_rp44:vial
+sudo service docker stop
