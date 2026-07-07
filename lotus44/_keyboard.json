@@ -1,0 +1,111 @@
+{
+    "keyboard_name": "GH60_RP44", 
+    "manufacturer": "coffeebreak-chicken",
+    "maintainer": "coffeebreak-chicken",
+    "url": "https://github.com/coffeebreak-chicken/Keyboard",
+    "usb": {
+        "vid": "0x355D",               // Vial プロジェクト
+        "pid": "0x4752",               // GHのASCII値0x(https://caniusevia.com/docs/configuring_qmk/#change-vendor_id-product_id)
+        "device_version": "0.0.1"
+    },
+    "processor": "RP2040",           // RP2040のMCU
+    "bootloader": "rp2040",          // RP2040で一般的なブートローダー
+    "diode_direction": "COL2ROW",
+    "features": {
+        "bootmagic": false,
+        "command": false,
+        "console": false,
+        "extrakey": true,
+        "mousekey": true,
+        "nkro": false,
+        "rgb_matrix": false,        // 複数のLED
+        "rgblight": true            // 単体のLED
+    },
+    "ws2812": {
+        "driver": "vendor",
+        "pin": "GP2"
+    },
+    //"rgb_matrix": {
+    "rgblight": {
+        //"led_count": 1,
+        "driver": "ws2812",
+        //"layout": [
+        //    {"matrix": [0, 0], "x": 0, "y": 0, "flags": 4}
+        // ]
+    },
+    "matrix_pins": {
+        "rows": [
+            "GP12",                      // ROW0
+            "GP6",                       // ROW1
+            "GP1",                       // ROW2
+            "GP0"                        // ROW3
+            ],
+        "cols": [
+            "GP15",                      // COL0
+            "GP14",                      // COL1
+            "GP13",                      // COL2
+            "GP11",                      // COL3
+            "GP10",                      // COL4
+            "GP9",                       // COL5
+            "GP26",                      // COL6
+            "GP22",                      // COL7
+            "GP19",                      // COL8
+            "GP18",                      // COL9
+            "GP17",                      // COL10
+            "GP16"                       // COL11
+            ],
+    },
+    "layouts": {
+        "LAYOUT": {
+            "layout": [
+                {"matrix": [0, 0],  "x": 0,     "y": 0},
+                {"matrix": [0, 1],  "x": 1,     "y": 0},
+                {"matrix": [0, 2],  "x": 2.25,  "y": 0},
+                {"matrix": [0, 3],  "x": 3.25,  "y": 0},
+                {"matrix": [0, 4],  "x": 4.25,  "y": 0},
+                {"matrix": [0, 5],  "x": 5.25,  "y": 0},
+                {"matrix": [0, 6],  "x": 7.5,   "y": 0},
+                {"matrix": [0, 7],  "x": 8.5,   "y": 0},
+                {"matrix": [0, 8],  "x": 9.5,   "y": 0},
+                {"matrix": [0, 9],  "x": 10.75, "y": 0},
+                {"matrix": [0, 10], "x": 11.75, "y": 0},
+                {"matrix": [0, 11], "x": 12.75, "y": 0},
+                
+                {"matrix": [1, 0],  "x": 0,     "y": 1, "w": 1.25},
+                {"matrix": [1, 1],  "x": 1.25,  "y": 1},
+                {"matrix": [1, 2],  "x": 2.5,   "y": 1},
+                {"matrix": [1, 3],  "x": 3.5,   "y": 1},
+                {"matrix": [1, 4],  "x": 4.5,   "y": 1},
+                {"matrix": [1, 5],  "x": 5.5,   "y": 1},
+                {"matrix": [1, 6],  "x": 7.75,  "y": 1},
+                {"matrix": [1, 7],  "x": 8.75,  "y": 1},
+                {"matrix": [1, 8],  "x": 9.75,  "y": 1},
+                {"matrix": [1, 9],  "x": 11,    "y": 1},
+                {"matrix": [1, 11], "x": 12,    "y": 1, "w": 1.75},
+                
+                {"matrix": [2, 0],  "x": 0,     "y": 1, "w": 1.75},
+                {"matrix": [2, 1],  "x": 1.75,  "y": 1},
+                {"matrix": [2, 3],  "x": 3,     "y": 1},
+                {"matrix": [2, 4],  "x": 4,     "y": 1},
+                {"matrix": [2, 5],  "x": 5,     "y": 1},
+                {"matrix": [2, 6],  "x": 6,     "y": 1},
+                {"matrix": [2, 7],  "x": 8,     "y": 1},
+                {"matrix": [2, 8],  "x": 9,     "y": 1},
+                {"matrix": [2, 9],  "x": 10,    "y": 1},
+                {"matrix": [2, 10], "x": 10.25, "y": 1},
+                {"matrix": [2, 11], "x": 11.25, "y": 1, "w": 1.25},
+                
+                {"matrix": [3, 0],  "x": 0,     "y": 1, "w": 1.25},
+                {"matrix": [3, 1],  "x": 1.25,  "y": 1, "w": 1.25},
+                {"matrix": [3, 3],  "x": 2.75,  "y": 1, "w": 1.25},
+                {"matrix": [3, 4],  "x": 4.25,  "y": 1, "w": 1.5},
+                {"matrix": [3, 5],  "x": 5.75,  "y": 1, "w": 1.5},
+                {"matrix": [3, 6],  "x": 7.25,  "y": 1, "w": 1.5},
+                {"matrix": [3, 7],  "x": 8.75,  "y": 1, "w": 1.5},
+                {"matrix": [3, 9],  "x": 10.25, "y": 1, "w": 1.25},
+                {"matrix": [3, 10], "x": 11.5,  "y": 1, "w": 1.25},
+                {"matrix": [3, 11], "x": 12.75, "y": 1, "w": 1.25}
+            ]
+        }
+    }
+}

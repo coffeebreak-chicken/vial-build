@@ -1,0 +1,10 @@
+
+<{キーボード}>/              # 今回は"without_spacer43_rp_mx"フォルダ
+├── keymaps/
+│   └── vial/
+│       ├── config.h     # キーマップ固有の設定
+│       ├── keymap.c     # Vial対応のキーマップ定義
+│       ├── rules.mk     # ビルド用の追加ルール
+│       └── vial.json    # GUI用のレイアウト定義ファイル
+├── config.h              # キーボード全体の設定
+└── keyboard.json         # キーボードの基本情報(JSON形式)
